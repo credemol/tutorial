@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+<title>HelloWorld Ajax</title>
+</h:head>
+<h:body>
+	<h:form id="HelloWorldForm">
+	<!-- 
+		<h:outputScript name="jsf.js" library="javax.faces" target="head" />
+	 -->
+
+
+		<h:inputText id="name" title="User Name" value="#{helloWorldBean.name}">
+			<f:validateLength minimum="3" maximum="20"></f:validateLength>
+		</h:inputText>
+		<h:commandButton id="submit" value="Submit">
+			<f:ajax execute="name" render="result errors_name">
+			</f:ajax>
+		</h:commandButton>
+		<p>
+		<!-- 
+			<h:inputText readonly="true" immediate="true" id="result" 
+				rendered="#{helloWorldBean.name != null}" >
+			</h:inputText>
+		 -->
+			 <!-- 
+			 <h:panelGroup
+			 	rendered="#{helloWorldBean.name != null}">
+			<h:outputText id="result" style="color:blue; " 
+				value="#{helloWorldBean.greeting}"></h:outputText>
+			 </h:panelGroup>
+			  -->
+			  <h:panelGroup id="result">
+			<h:outputText style="color:blue; " 
+				value="#{helloWorldBean.greeting}" rendered="#{helloWorldBean.name != null}"></h:outputText>
+			  </h:panelGroup>
+		</p>
+		<p>
+			<h:message for="name" id="errors_name" style="color:red; "></h:message>
+		</p>
+	</h:form>
+</h:body>
+</html>
